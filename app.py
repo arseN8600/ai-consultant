@@ -5,10 +5,11 @@ from google.genai import types
 # === НАСТРОЙКИ СТРАНИЦЫ ===
 st.set_page_config(page_title="SVOYDOM | Новостройки Астаны", page_icon="🏢", layout="wide")
 
+# === ПОДКЛЮЧЕНИЕ КЛЮЧА ИЗ SECRETS ===
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-# === ДИЗАЙН КАТАЛОГА (CSS) ===
+# === ДИЗАЙН КАТАЛОГА И ИСПРАВЛЕНИЕ ЦВЕТА ТЕКСТА (CSS) ===
 st.markdown("""
     <style>
     .stApp { background-color: #F4F6F9; }
@@ -18,6 +19,14 @@ st.markdown("""
     .property-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
     .price-tag { color: #2563EB; font-weight: bold; font-size: 1.3rem; margin: 10px 0; }
     .badge { background: #E2E8F0; color: #475569; padding: 4px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; }
+    
+    /* Принудительно делаем текст сообщений темным для читаемости */
+    [data-testid="stChatMessageContent"] {
+        color: #1E293B !important;
+    }
+    [data-testid="stChatMessage"] {
+        color: #1E293B !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -104,7 +113,7 @@ if user_input:
             )
             bot_reply = response.text
         except Exception as e:
-            bot_reply = "Система обновляет базу данных. Пожалуйста, повторите запрос через минуту."
+            bot_reply = "Система обновляет базу данных. Пожалуйста, проверьте правильность API-ключа в настройках Secrets."
 
     with st.chat_message("assistant"):
         st.markdown(bot_reply)
