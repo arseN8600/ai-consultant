@@ -6,7 +6,7 @@ from google.genai import types
 st.set_page_config(page_title="ESIL PARK | Премиум Резиденция", page_icon="🏛️", layout="wide")
 
 # === ВСТАВЬ СВОЙ КЛЮЧ ===
-GEMINI_API_KEY = 'ВАШ_КЛЮЧ_ОТ_GOOGLE_СЮДА'
+GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 # === ПРЕМИАЛЬНЫЙ ДИЗАЙН (CSS) ===
