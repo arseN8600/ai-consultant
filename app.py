@@ -113,7 +113,7 @@ if user_input:
             )
             bot_reply = response.text
         except Exception as e:
-            bot_reply = f"Техническая ошибка: {e}"
+            bot_reply = "Все наши брокеры сейчас консультируют других клиентов. Пожалуйста, повторите ваш вопрос через пару секунд."
 
     with st.chat_message("assistant"):
         st.markdown(bot_reply)
