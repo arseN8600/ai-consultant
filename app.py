@@ -113,7 +113,7 @@ if user_input:
             )
             bot_reply = response.text
         except Exception as e:
-            bot_reply = "Система обновляет базу данных. Пожалуйста, проверьте правильность API-ключа в настройках Secrets."
+            bot_reply = f"Техническая ошибка: {e}"
 
     with st.chat_message("assistant"):
         st.markdown(bot_reply)
